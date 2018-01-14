@@ -2,7 +2,7 @@
 *.sh
 
 ## Compiled document:
-*.pdf
+main.pdf
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
