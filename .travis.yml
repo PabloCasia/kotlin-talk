@@ -1,0 +1,22 @@
+dist: trusty
+sudo: required
+services:
+- docker
+before_install:
+- docker pull pablocasia/latex
+- docker run --rm -v `pwd`:/latex pablocasia/latex build -b main
+script:
+- mv main.pdf kotlin-talk.pdf
+# Docker se ejecuta como root, por lo que necesitamos cambiar el propietario del fichero generado
+# 	para que el deploy no falle (el deploy se ejecuta con el usuario travis)
+- sudo chmod 755 kotlin-talk.pdf
+- sudo chown travis kotlin-talk.pdf
+deploy:
+  provider: releases
+  api_key:
+    secure: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  file: kotlin-talk.pdf
+  on:
+    repo: PabloCasia/kotlin-talk
+    tags: true
+    all_branches: true

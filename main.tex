@@ -1,0 +1,108 @@
+\documentclass[10pt]{beamer}
+\usetheme[
+    left
+  ]{AAUsidebar}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{subfig}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\usepackage{pdfcomment}
+\newcommand*{\sectiondir}{sections/}
+\newcommand{\pdfnote}[1]{\marginnote{\pdfcomment[icon=note]{#1}}}
+\newcommand{\heart}{\ensuremath\heartsuit}
+%\newcommand{\heart}{\ensuremath\varheartsuit}
+
+%
+\usepackage{pgfplotstable}
+
+%%% Needed to divide into several files
+\usepackage{import}
+%%% Needed to use if-else
+\usepackage{xstring}
+
+\usepackage{fontspec} % para compilar con xelatex
+\usepackage{fontawesome}
+
+\usetikzlibrary{backgrounds}
+% background color definition from pgfmanual-en-macros.tex
+\definecolor{graphicbackground}{cmyk}{0.04,0.02,0.02,0.04}
+% key to change color
+\pgfkeys{/tikz/.cd,
+    background color/.initial=graphicbackground,
+    background color/.get=\backcol,
+    background color/.store in=\backcol,
+}
+\tikzset{background rectangle/.style={
+        fill=\backcol,
+    },
+    use background/.style={
+        show background rectangle
+    }
+}
+%
+
+\newcommand{\chref}[2]{%
+  \href{#1}{{\usebeamercolor[bg]{AAUsidebar}#2}}%
+}
+
+\title[Kotlin]
+{Kotlin Or:}
+
+\subtitle{How I Learned to Stop Worrying and Love the JVM}
+
+\date{24 Enero 2018}
+
+\author[Pablo García Fernández]
+{
+  Pablo García Fernández\\
+  \href{mailto:pablogf.casia@gmail.com}{{\tt pablogf.casia@gmail.com}}
+}
+
+\institute[
+  Escuela de Ingeniería Informática\\
+  Universidad de Oviedo\\
+
+]
+{
+  Escuela de Ingeniería Informática\\
+  Universidad de Oviedo\\
+}
+
+
+\pgfdeclareimage[height=1.5cm]{titlepagelogo}{images/logo_new}
+\titlegraphic{
+  \pgfuseimage{titlepagelogo}
+}
+
+
+\begin{document}
+{\wavesbg%
+\begin{frame}[plain,noframenumbering]
+  \titlepage
+\end{frame}}
+%%%%%%%%%%%%%%%%
+
+% TOC
+\begin{frame}{Agenda}{}
+\tableofcontents
+\pdfnote{Agenda de los temas a tratar}
+\end{frame}
+%%%%%%%%%%%%%%%%
+
+%%% Import contents
+\import{\sectiondir}{introduction.tex}
+\import{\sectiondir}{kotlin_vs_java.tex}
+\import{\sectiondir}{kotlin_in_android.tex}
+
+\date{¡Gracias!}
+
+{\wavesbg
+\begin{frame}[plain,noframenumbering]
+  \titlepage
+  %\finalpage{¡Gracias!\\ Pablo García Fernández}
+\end{frame}}
+%%%%%%%%%%%%%%%%
+
+\end{document}
